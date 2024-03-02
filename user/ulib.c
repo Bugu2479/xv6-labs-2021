@@ -23,7 +23,7 @@ strcmp(const char *p, const char *q)
 }
 
 uint
-strlen(const char *s)
+strlen(const char *s)  // 计算字符串的长度并返回无符号整数
 {
   int n;
 
@@ -85,12 +85,12 @@ stat(const char *n, struct stat *st)
 }
 
 int
-atoi(const char *s)
+atoi(const char *s)  // 把 无符号整数字符串 转换为 整数
 {
   int n;
 
   n = 0;
-  while('0' <= *s && *s <= '9')
+  while('0' <= *s && *s <= '9') // 当 元素 字符是 0～9时，进行转换，否则转换不了，这里没有做 不是字符串的报错处理，结果会报0000...,
     n = n*10 + *s++ - '0';
   return n;
 }
