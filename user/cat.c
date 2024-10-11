@@ -2,7 +2,7 @@
 #include "kernel/stat.h"
 #include "user/user.h"
 
-char buf[512];
+char buf[512]; // cat缓冲区，从0 读入数据， 在输出到 1 上 
 
 void
 cat(int fd)
