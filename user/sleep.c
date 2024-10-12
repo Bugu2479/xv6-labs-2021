@@ -5,7 +5,7 @@
 
 int main(int argc,char *argv[])
 {
-    if(argc < 0) 
+    if(argc < 0) // 无参数处理 
     {
         fprintf(2,"unabled to sleep ...");
         exit(1);

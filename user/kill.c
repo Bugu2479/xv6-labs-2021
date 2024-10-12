@@ -12,6 +12,6 @@ main(int argc, char **argv)
     exit(1);
   }
   for(i=1; i<argc; i++)
-    kill(atoi(argv[i]));
+    kill(atoi(argv[i])); // 将字符串转化为整形，再杀死进程
   exit(0);
 }
