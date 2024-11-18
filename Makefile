@@ -175,8 +175,9 @@ mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
 # details:
 # http://www.gnu.org/software/make/manual/html_node/Chained-Rules.html
 .PRECIOUS: %.o
-
+# 把程序加入到系统中
 UPROGS=\
+	$U/_xargs\
 	$U/_find\
 	$U/_primes\
 	$U/_pingpong\
