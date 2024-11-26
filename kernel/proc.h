@@ -1,5 +1,6 @@
+// 该文件定义了一些操作系统内核管理进程 需要用到的 数据结构
 // Saved registers for kernel context switches.
-struct context {
+struct context { //保存 内核上下文切换时 内核状态（CPU，寄存器信息）
   uint64 ra;
   uint64 sp;
 
@@ -21,9 +22,9 @@ struct context {
 // Per-CPU state.
 struct cpu {
   struct proc *proc;          // The process running on this cpu, or null.
-  struct context context;     // swtch() here to enter scheduler().
-  int noff;                   // Depth of push_off() nesting.
-  int intena;                 // Were interrupts enabled before push_off()?
+  struct context context;     // swtch() here to enter scheduler(). 保存当前CPU的上下文信息
+  int noff;                   // ? Depth of push_off() nesting.
+  int intena;                 // ? Were interrupts enabled before push_off()? 在调用 push_off() 之前中断是否被启用的标志
 };
 
 extern struct cpu cpus[NCPU];
@@ -41,7 +42,7 @@ extern struct cpu cpus[NCPU];
 // the trapframe includes callee-saved user registers like s0-s11 because the
 // return-to-user path via usertrapret() doesn't return through
 // the entire kernel call stack.
-struct trapframe {
+struct trapframe { // 处理中断时，需要保存的 寄存器状态信息
   /*   0 */ uint64 kernel_satp;   // kernel page table
   /*   8 */ uint64 kernel_sp;     // top of process's kernel stack
   /*  16 */ uint64 kernel_trap;   // usertrap()
@@ -80,11 +81,11 @@ struct trapframe {
   /* 280 */ uint64 t6;
 };
 
-enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
+enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };// 进程的状态
 
 // Per-process state
-struct proc {
-  struct spinlock lock;
+struct proc { // 传说中的 操作系统用来记录每个进程的信息的 数据结构
+  struct spinlock lock; // ？ 用于保护进程数据的自旋锁
 
   // p->lock must be held when using these:
   enum procstate state;        // Process state
